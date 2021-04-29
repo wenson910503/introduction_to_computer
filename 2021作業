@@ -1,0 +1,88 @@
+傳值呼叫(call by value)實引數和需引數分別佔用不同記憶體所以可以防止變數被更改。
+Public class callByval{
+Public class static void main(string[]arg)arg)(
+int a=10 , b=15;
+system,out,println("呼叫前"\t a="+a+"\t b="+b");
+byval(a,b);
+system,out,println("呼叫後"\t a="+a+"\t b="+b");
+}
+static,void byval(int x,inty){
+int t;
+t=x
+x=y
+y=t
+system,out,println("呼叫中"\tx="+x+"\ty b="+y");
+}
+}
+參考呼叫(call by reference)
+參考呼叫則是傳遞參數記憶體的位置給接收方，由於是同一個記憶體位置，所以變動的都是同一個記憶體位置的值，彼此會互相影響。
+參考型別以這個為傳遞方式，有沒有加ref不影響，但實際參數及虛擬參數要一起加或一起不加喔~實質型別操作方法為將實際參數及虛擬參數宣告為ref，即成為參考呼叫。
+ref宣告的實際參數必須是變數、陣列或物件，不可為常數或運算式。且實際參數必須初始化後才能使用。
+static void Main(string[] args)
+{ 
+    int money =1000;
+    int newAmount = addMoney(ref money);//加上ref
+    Console.WriteLine(money);
+    Console.WriteLine(newAmount);
+    Console.ReadKey();
+}
+ 
+private static int addMoney(ref int amount)//加上ref
+{
+    amount = amount * 2;
+    return amount;
+}
+
+方法多載
+1.voidmethed(){}
+2.int methed(){}//不能多載，傳回值不同但引數個數相同
+3.void methed(int a){}//成功多載比第一航多一個引數
+4.void methed(int h){}//不能多載:引數名稱不同，但和第三行的型別和個數相同
+5.void methed(strings){}//成功多載:雖然和第三行的型別和個數相同但型別不同
+6.void methed(int a,strings){}//成功多載:引數和個數和型別都不同
+7.void methed(strings,int a){}//成功多載:和第六行相同但順序不同
+
+(1)請使用靜態遞迴方法算出費氏數列。
+public class Exercise_4_9 {
+ 
+public static void main(String[] args) {
+ 
+for(int n=1;n<=50;n++) {
+System.out.println(Fibonacci(n));
+}
+ 
+}
+ 
+public static int Fibonacci(int n) {
+if(n==1||n==2) {
+return 1;
+}
+else {
+return Fibonacci(n-2)+Fibonacci(n-1);
+}
+}
+
+(2)請使用 iterative方法算出費氏數列。
+import java.util.*;
+
+public class Fibonacci {
+    private List<Integer> fib = new ArrayList<>();
+    {
+        fib.add(0);
+        fib.add(1);
+    }
+    
+    Integer get(int n) {
+        if(n >= fib.size()) for(int i = fib.size(); i <= n; i++) {
+            fib.add(fib.get(i - 1) + fib.get(i - 2));
+        }
+        return fib.get(n);
+    }
+    
+    public static void main(String[] args) {
+        Fibonacci fibonacci = new Fibonacci();
+        for(int i = 0; i < 20; i++) {
+            System.out.print(fibonacci.get(i) + " ");
+        }
+    }
+}
